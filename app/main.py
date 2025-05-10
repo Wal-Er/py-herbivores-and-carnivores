@@ -11,12 +11,12 @@ class Animal:
     def __str__(self) -> str:
         return "{" + ", ".join(f"{key}: {value}"
                                for key, value
-                               in self.__dict__().items()) + "}"
+                               in self.get_animal().items()) + "}"
 
     def __repr__(self) -> str:
         return str(self)
 
-    def __dict__(self) -> dict:
+    def get_animal(self) -> dict:
         return dict(
             Name=self.name, Health=self.health, Hidden=self.hidden
         )
@@ -32,7 +32,7 @@ class Carnivore(Animal):
     def bite(bitten_animal: Animal) -> None:
         if bitten_animal.hidden is not True and not isinstance(bitten_animal,
                                                                Carnivore):
-            Animal.bite_animal(bitten_animal)
+            bitten_animal.bite_animal()
 
 
 class Herbivore(Animal):
